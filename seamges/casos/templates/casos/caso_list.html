@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}CASOS GES{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'core/css/dataTables.semanticui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
+{% endblock link %}
+{% block content %}
+    <div>
+        <h2 class="ui header floated left">
+            <i class="icon briefcase"></i>
+            <div class="ui content">Casos GES
+                <div class="sub header">Listado de Casos en Gestión</div>
+            </div>
+        </h2>
+        {% if request.user.is_staff %}
+            <a class="ui right floated small teal labeled icon button"
+               data-tooltip="Ingresar un nuevo caso"
+               data-inverted=""
+               data-position="bottom center"
+               href="#">
+                <i class="user icon"></i>
+                INGRESAR NUEVO MONITOREO
+            </a>
+        {% endif %}
+        <div class="ui divider clearing"></div>
+        <div>
+            <h3 class="ui header floated left">
+                <div class="content">
+
+                </div>
+            </h3>
+            <div>
+                <table id="pacientes" class="ui celled table bordered striped">
+                    <thead>
+                    <tr>
+                        <th>ACCIONES</th>
+                        <th>RUN</th>
+                        <th>FECHA INICIO</th>
+                        <th>FECHA LIMITE</th>
+                        <th>DIAS RESTANTES</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for paciente in paciente_list %}
+                        <tr>
+                            <td style="width: 18%">
+                                <a class="ui tiny icon primary button"
+                                   href="{% url 'pacientes:paciente' paciente.id paciente.nombres|slugify %}"
+                                   data-tooltip="Ver la información"
+                                   data-inverted=""
+                                   data-position="bottom center">
+                                    <i class="icon user "></i>
+                                </a>
+
+                                {% if request.user.is_staff %}
+                                    <a class="ui tiny icon yellow button"
+                                       href="{% url 'pacientes:update' paciente.id  %}"
+                                       data-tooltip="Editar la información"
+                                       data-inverted=""
+                                       data-position="bottom center">
+                                        <i class="icon edit"></i>
+                                    </a>
+                                    <a class="ui tiny icon red button"
+                                       href="{% url 'pacientes:delete' paciente.id %}"
+                                       data-tooltip="Borrar el Caso"
+                                       data-inverted=""
+                                       data-position="bottom center">
+                                        <i class="icon trash"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>{{ paciente.run }}-{{ paciente.dv}}</td>
+                            <td>{{ paciente.nombres }} {{ paciente.pri_apellido }} {{ paciente.seg_apellido }}</td>
+                            <td>{{ paciente.fecha_nac }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'core/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'core/js/dataTables.semanticui.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#pacientes').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+            });
+        });
+    </script>
+{% endblock scripts %}
