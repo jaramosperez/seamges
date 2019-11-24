@@ -8,6 +8,7 @@ pylint = "*"
 
 [packages]
 django = "==2.2.7"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
@@ -17,3 +18,4 @@ startapp = "python manage.py startapp"
 dev = "python manage.py runserver 127.0.0.1:8844"
 make = "python manage.py makemigrations"
 migrate = "python manage.py migrate"
+script = "python manage.py runscript load_excel"

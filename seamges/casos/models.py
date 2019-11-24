@@ -8,10 +8,12 @@ class Caso(models.Model):
     patologia = models.ForeignKey(Patologia, on_delete=models.CASCADE, verbose_name="Patología")
     fecha_inicio = models.DateField(verbose_name="Fecha Inicio")
     fecha_limite = models.DateField(verbose_name="Fecha Límite")
+    observacion = models.TextField(verbose_name='Observación')
+    vigente = models.BooleanField(verbose_name='Caso Vigente', default=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
     class Meta:
         verbose_name = "Caso"
         verbose_name_plural = "Casos"
-        ordering = ['-fecha_limite']
+        ordering = ['fecha_limite']

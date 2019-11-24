@@ -19,7 +19,7 @@
                data-inverted=""
                data-position="bottom center"
                href="#">
-                <i class="user icon"></i>
+                <i class="save icon"></i>
                 INGRESAR NUEVO MONITOREO
             </a>
         {% endif %}
@@ -36,44 +36,33 @@
                     <tr>
                         <th>ACCIONES</th>
                         <th>RUN</th>
+                        <th>NOMBRE</th>
                         <th>FECHA INICIO</th>
                         <th>FECHA LIMITE</th>
                         <th>DIAS RESTANTES</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for paciente in paciente_list %}
+                    {% for caso in caso_list %}
+                        {% if caso.vigente  %}
                         <tr>
-                            <td style="width: 18%">
-                                <a class="ui tiny icon primary button"
-                                   href="{% url 'pacientes:paciente' paciente.id paciente.nombres|slugify %}"
-                                   data-tooltip="Ver la información"
-                                   data-inverted=""
-                                   data-position="bottom center">
-                                    <i class="icon user "></i>
+                            <td >
+                                <a class="ui right floated tiny primary labeled icon button"
+                                data-tooltip="{{ caso.paciente.nombres }}"
+                                data-inverted=""
+                                data-position="bottom center"
+                                href="{% url 'casos:caso' caso.id%}">
+                                    <i class="user icon"></i>
+                                    GESTIONAR CASO
                                 </a>
-
-                                {% if request.user.is_staff %}
-                                    <a class="ui tiny icon yellow button"
-                                       href="{% url 'pacientes:update' paciente.id  %}"
-                                       data-tooltip="Editar la información"
-                                       data-inverted=""
-                                       data-position="bottom center">
-                                        <i class="icon edit"></i>
-                                    </a>
-                                    <a class="ui tiny icon red button"
-                                       href="{% url 'pacientes:delete' paciente.id %}"
-                                       data-tooltip="Borrar el Caso"
-                                       data-inverted=""
-                                       data-position="bottom center">
-                                        <i class="icon trash"></i>
-                                    </a>
-                                {% endif %}
                             </td>
-                            <td>{{ paciente.run }}-{{ paciente.dv}}</td>
-                            <td>{{ paciente.nombres }} {{ paciente.pri_apellido }} {{ paciente.seg_apellido }}</td>
-                            <td>{{ paciente.fecha_nac }}</td>
+                            <td>{{ caso.paciente.run }}-{{ caso.paciente.dv}}</td>
+                            <td>{{ caso.paciente.nombres }} {{ caso.paciente.apellidos }}</td>
+                            <td>{{ caso.fecha_inicio }}</td>
+                            <td>{{ caso.fecha_limite }}</td>
+                            <td>{{ caso.dias_restantes }} </td>
                         </tr>
+                        {% endif %}
                     {% endfor %}
                 </table>
             </div>

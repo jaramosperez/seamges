@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from .models import Caso
 from .forms import CasoForm
+import datetime
 
 
 # Create your views here.
@@ -16,7 +17,7 @@ class CasoListView(ListView):
     model = Caso
 
 @method_decorator(staff_member_required, name='dispatch')
-class CasoDetailView(DeleteView):
+class CasoDetailView(DetailView):
     model = Caso
 
 @method_decorator(staff_member_required, name='dispatch')
@@ -26,7 +27,7 @@ class CasoCreateView(CreateView):
     success_url = reverse_lazy('casos:casos')
 
 @method_decorator(staff_member_required, name='dispatch')
-class CasoUpdate(UpdateView):
+class CasoUpdateView(UpdateView):
     model = Caso
     form_class = CasoForm
     template_name_suffix = '_update_form'
@@ -35,6 +36,8 @@ class CasoUpdate(UpdateView):
         return reverse_lazy('casos:update', args=[self.object.id]) + '?ok'
 
 @method_decorator(staff_member_required, name='dispatch')
-class CasoDelete(DeleteView):
+class CasoDeleteView(DeleteView):
     model = Caso
     success_url = reverse_lazy('casos:casos')
+
+

@@ -16,7 +16,7 @@
       <div class="ui fixed grey inverted menu">
           <a class="{% if request.path == '/' %}active{% endif %} item" href="{% url 'home' %}">SEAMGES Sol de Oriente</a>
           {% if request.user.is_staff %}
-          <a class="ui {% if request.path|slice:":14" == '/pacientes/' %}active{% endif %} item" href="{% url 'pacientes:pacientes' %}">CASOS</a>
+          <a class="ui {% if request.path|slice:":14" == '/casos/' %}active{% endif %} item" href="{% url 'casos:casos' %}">CASOS</a>
           {% endif %}
           <div class="ui secondary right menu">
               {% if not request.user.is_authenticated %}
