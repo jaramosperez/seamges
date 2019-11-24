@@ -4,9 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 django = "==2.2.7"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+startapp = "python manage.py startapp"
+dev = "python manage.py runserver 127.0.0.1:8844"
+make = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
