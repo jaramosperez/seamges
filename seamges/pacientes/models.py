@@ -10,5 +10,10 @@ class Paciente(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
+    class Meta:
+        verbose_name = "Paciente"
+        verbose_name_plural = "Pacientes"
+        ordering = ['-created']
+
     def __str__(self):
         return self.nombre + ' ' + self.apellidos

@@ -6,5 +6,10 @@ class Patologia(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
+    class Meta:
+        verbose_name = "Patología"
+        verbose_name_plural = "Patologías"
+        ordering = ['nombre']
+
     def __str__(self):
         return self.nombre
