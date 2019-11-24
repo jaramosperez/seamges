@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SEAMGES | {% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- Estilos -->
+    <link href="{% static 'core/semantic/semantic-lumen.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/estilo.css' %}" rel="stylesheet">
+    {% block link %}{% endblock link %}
+</head>
+<body>
+  <!-- Navegación -->
+  <div style="padding: 55px 0 30px;">
+      <div class="ui fixed grey inverted menu">
+          <a class="{% if request.path == '/' %}active{% endif %} item" href="{% url 'home' %}">SEAMGES Sol de Oriente</a>
+          {% if request.user.is_staff %}
+          <a class="ui {% if request.path|slice:":14" == '/pacientes/' %}active{% endif %} item" href="{% url 'pacientes:pacientes' %}">CASOS</a>
+          {% endif %}
+          <div class="ui secondary right menu">
+              {% if not request.user.is_authenticated %}
+                <a class="ui item" href="{% url 'login' %}">Acceder</a>
+              {% else %}
+                <a class="ui item" href="{% url 'logout' %}">Salir</a>
+              {% endif %}
+          </div>
+      </div>
+      <!-- Contenido -->
+      <div class="ui container">
+          {% block content %}{% endblock %}
+      </div>
+      <!-- Footer -->
+
+      <!-- Javascript -->
+      <script src="{% static 'core/js/jquery-3.3.1.js' %}"></script>
+      <script src="{% static 'core/semantic/semantic.min.js' %}"></script>
+      {% block scripts %}{% endblock scripts %}
+  </div>
+</body>
+</html>
