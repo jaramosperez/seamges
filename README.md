@@ -8,13 +8,13 @@ Desarrollado como Tesis para la Universidad Tecnológica de Chile Inacap
 *  Javier Ramos
 
 
-**Profesor Guia**
+**Profesor Guía**
 *  Marcelo Cancino
-*  
+
 
 **Tecnologías**
 *  Django
 *  Semantic UI
 *  Postgresql
 *  Git
-*  
+ 
