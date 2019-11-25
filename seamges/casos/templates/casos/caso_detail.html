@@ -55,7 +55,7 @@
                data-tooltip="Ingresar un citacion"
                data-inverted=""
                data-position="bottom center"
-               href="#">
+               href="{% url 'citaciones:create' caso.id %}">
                 <i class="user icon"></i>
                 INGRESAR CITACIÓN
             </a>
@@ -63,38 +63,18 @@
             <thead>
             <tr>
                 <th>FECHA</th>
-                <th>HORA</th>
                 <th>PROFESIONAL</th>
                 <th>TIPO PRESTACIÓN</th>
-                <th>OBSERVACION</th>
-                <th>ESTADO</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>22/11/2019</td>
-              <td>08:30</td>
-              <td>RENE ALVAREZ</td>
-              <td>PESQUISA PRESIÓN ARTERIAL</td>
-              <td>PRIMERA PESQUISA</td>
-              <td>ATENDIDO</td>
-            </tr>
-            <tr>
-              <td>27/11/2019</td>
-              <td>08:30</td>
-              <td>RENE ALVAREZ</td>
-              <td>PESQUISA PRESIÓN ARTERIAL</td>
-              <td>SEGUNDA PESQUISA</td>
-              <td>EN ESPERA</td>
-            </tr>
-            <tr>
-              <td>02/12/2019</td>
-              <td>08:30</td>
-              <td>XIMENA MARIN</td>
-              <td>CONFIRMACION MEDICA</td>
-              <td>SIN OBSERVACION</td>
-              <td>EN ESPERA</td>
-            </tr>
+            {% for citacion in citaciones_listado %}
+                        <tr>
+                            <td>{{ citacion.fecha_agenda }}</td>
+                            <td>{{ citacion.profesional.nombre }}</td>
+                            <td>{{ citacion.prestacion.nombre }}</td>
+                        </tr>
+                    {% endfor %}
             </tbody>
         </table>
     </div>

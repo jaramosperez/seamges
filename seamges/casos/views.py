@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from .models import Caso
+from citaciones.models import Citacion
 from .forms import CasoForm
 import datetime
 
@@ -19,6 +20,12 @@ class CasoListView(ListView):
 @method_decorator(staff_member_required, name='dispatch')
 class CasoDetailView(DetailView):
     model = Caso
+
+    def get_context_data(self, **kwargs):
+        context = super(CasoDetailView, self).get_context_data(**kwargs)
+        citaciones_listado = Citacion.objects.filter(caso_id=self.object.id)
+        context['citaciones_listado'] = citaciones_listado
+        return context
 
 @method_decorator(staff_member_required, name='dispatch')
 class CasoCreateView(CreateView):

@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from casos.urls import casos_patterns
+from citaciones.urls import citaciones_patterns
 
 urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('casos/', include(casos_patterns)),
+    path('citaciones/', include(citaciones_patterns)),
     #Paths de Auth
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),
