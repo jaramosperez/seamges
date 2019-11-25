@@ -10,7 +10,7 @@ from patologias.models import Patologia
 from casos.models import Caso
 
 def run():
-    with codecs.open('casos/monitoreo.csv', encoding='utf-8', errors='ignore') as fdata:
+    with codecs.open('casos/despliegaColasAction.csv', encoding='utf-8', errors='ignore') as fdata:
         reader = csv.reader(fdata)
         next(reader) # AVANZA PARA NO CONTAR LOS TITULOS DE LAS COLUMNAS
 

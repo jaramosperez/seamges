@@ -4,6 +4,15 @@
 {% block content %}
 <div>
         <h2 class="ui header floated left">
+        {% if 'ok' in request.GET %}
+                <div class="ui mini message transition fixed">
+        <i class="close icon"></i>
+        <div class="header">
+            You are eligible for a reward
+        </div>
+        <p>Go to your <b>special offers</b> page to see now.</p>
+        </div>
+        {% endif %}
             <i class="icon user"></i>
             <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
                 <div class="sub header">INFORMACIÓN DEL CASO</div>
@@ -78,4 +87,12 @@
             </tbody>
         </table>
     </div>
-{% endblock %}
+{% endblock content %}
+{% block scripts %}
+<script>
+    $('.message .close')
+    .on('click', function() {
+        $(this).closest('.message').transition('fade');
+    });
+    </script>
+{% endblock scripts %}

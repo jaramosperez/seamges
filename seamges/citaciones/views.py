@@ -31,4 +31,4 @@ class CitacionCreateView(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('casos:caso', args=[self.object.caso.id])
+        return reverse_lazy('casos:caso', args=[self.object.caso.id]) + '?ok'
