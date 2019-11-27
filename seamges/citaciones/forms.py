@@ -1,6 +1,5 @@
 from django import forms
 from prestaciones.models import Prestacion
-from profesionales.models import Profesional
 from .models import Citacion
 
 

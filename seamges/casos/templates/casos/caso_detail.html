@@ -5,19 +5,27 @@
 <div>
         <h2 class="ui header floated left">
         {% if 'ok' in request.GET %}
-                <div class="ui mini message transition fixed">
+                <div class="ui mini message success transition fixed">
         <i class="close icon"></i>
         <div class="header">
-            You are eligible for a reward
+            Citación Ingresada Correctamente
         </div>
-        <p>Go to your <b>special offers</b> page to see now.</p>
+        <p>Puede revisar la citación al final de esta página</p>
         </div>
         {% endif %}
             <i class="icon user"></i>
             <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
                 <div class="sub header">INFORMACIÓN DEL CASO</div>
             </div>
-        </h2> 
+        </h2>
+        <a class="ui right floated small teal labeled icon button"
+               data-tooltip="Ingresar un nuevo caso"
+               data-inverted=""
+               data-position="bottom center"
+               href="{% url 'casos:casos' %}">
+                <i class="backward icon"></i>
+                VOLVER AL LISTADO DE CASOS
+            </a> 
         <div class="ui divider clearing"></div>
         <div class="ui horizontal raised segments">
             <div class="ui red segment">
