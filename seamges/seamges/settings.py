@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'citaciones',
     'core',
     'django_extensions',
+    'establecimientos',
     'pacientes',
     'patologias',
     'prestaciones',

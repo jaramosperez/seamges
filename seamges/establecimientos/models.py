@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Establecimiento(models.Model):
-    nombre = models.CharField(verbose_name="Nombre de establecimiento")
+    nombre = models.CharField(verbose_name="Nombre de establecimiento", max_length=254)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
@@ -10,3 +10,7 @@ class Establecimiento(models.Model):
         verbose_name = "Establecimiento"
         verbose_name_plural = "Establecimientos"
         ordering = ['nombre']
+
+    def __str__(self):
+        return self.nombre
+    

@@ -1,6 +1,7 @@
 from django import forms
 from prestaciones.models import Prestacion
 from .models import Citacion
+from profesionales.models import Profesional
 
 
 class CitacionForm(forms.ModelForm):
