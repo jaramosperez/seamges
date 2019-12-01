@@ -5,10 +5,15 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+autopep8 = "*"
+pydotplus = "*"
+graphviz = "*"
 
 [packages]
 django = "==2.2.7"
 django-extensions = "*"
+openpyxl = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.8"

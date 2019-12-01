@@ -12,6 +12,7 @@ class Caso(models.Model):
     fecha_limite = models.DateField(verbose_name="Fecha Límite")
     observacion = models.TextField(verbose_name='Observación')
     vigente = models.BooleanField(verbose_name='Caso Vigente', default=True)
+    exceptuado = models.BooleanField(verbose_name='Caso Exceptuado', default=False)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
 
