@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}REPORTES GES{% endblock %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'core/css/dataTables.semanticui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
+{% endblock link %}
+{% block content %}
+<div>
+<h2 class="ui header floated left">
+        
+            <i class="icon chart pie"></i>
+            <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
+                <div class="sub header">REPORTES DE SEAMGES</div>
+            </div>
+        </h2>
+        <div class="ui divider clearing"></div>
+        <div class="ui cards">
+        <div class="card">
+            <div class="content">
+            <div class="header">Casos por Patología</div>
+            <div class="description">
+                Cantidad de casos gestionados por patologías.
+            </div>
+            </div>
+            <div class="ui bottom yellow attached button">
+            <i class="add icon"></i>
+            Ver Información
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+            <div class="header">Casos Exceputado</div>
+            <div class="description">
+                Información referente a los casos que se encuentran exceptuados.
+            </div>
+            </div>
+            <div class="ui bottom yellow attached button">
+            <i class="add icon"></i>
+            Ver Información
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+            <div class="header">Cantidad de NSP</div>
+            <div class="description">
+                Muestra información Referente a las ausencias a citaciones de los pacientes
+            </div>
+            </div>
+            <div class="ui bottom yellow attached button">
+            <i class="add icon"></i>
+            Ver Información
+            </div>
+        </div>
+        </div>
+        </div>
+
+{% endblock content %}

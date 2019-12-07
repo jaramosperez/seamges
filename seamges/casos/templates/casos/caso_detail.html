@@ -3,16 +3,17 @@
 {% block title %}INFORMACIÓN DEL CASO{% endblock %}
 {% block content %}
 <div>
-        <h2 class="ui header floated left">
-        {% if 'ok' in request.GET %}
-                <div class="ui mini message success transition fixed">
+{% if 'ok' in request.GET %}
+        <div class="ui warning message transition">
         <i class="close icon"></i>
         <div class="header">
-            Citación Ingresada Correctamente
+            Tiene campos sin completar
         </div>
-        <p>Puede revisar la citación al final de esta página</p>
+        <p>Por favor, ingrese los datos requeridos en los campos correspondientes.</p>
         </div>
         {% endif %}
+        <h2 class="ui header floated left">
+        
             <i class="icon user"></i>
             <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
                 <div class="sub header">INFORMACIÓN DEL CASO</div>
@@ -29,7 +30,7 @@
         <div class="ui divider clearing"></div>
         <div class="ui horizontal raised segments">
             <div class="ui red segment">
-                <div class="ui animated list divided very relaxed">
+                <div class="ui list divided very relaxed">
                     <div class="item">
                         <i class="user icon"></i>
                         <div class="content">FECHA INICIO: <strong>{{caso.fecha_inicio}}</strong></div>
@@ -41,6 +42,16 @@
                     <div class="item">
                         <i class="briefcase icon"></i>
                         <div class="content">FALTAN: 31 DÍAS</div>
+                    </div>
+                    <div class="item">
+                        <div class="ui toggle checkbox">
+                        <input name="public" type="checkbox" tabindex="0" ><label>Vigente</label>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui toggle checkbox">
+                        <input name="public" type="checkbox" tabindex="0" ><label>Exceptuado</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,6 +87,7 @@
                 <i class="user icon"></i>
                 INGRESAR CITACIÓN
             </a>
+            
         <table class="ui celled table bordered striped">
             <thead>
             <tr>
@@ -88,7 +100,7 @@
             {% for citacion in citaciones_listado %}
                         <tr>
                             <td>{{ citacion.fecha_agenda }}</td>
-                            <td>{{ citacion.profesional.nombre }}</td>
+                            <td>{{ citacion.profesional.nombres }} {{ citacion.profesional.primer_apellido }} {{ citacion.profesional.segundo_a }}</td>
                             <td>{{ citacion.prestacion.nombre }}</td>
                         </tr>
                     {% endfor %}
@@ -101,6 +113,6 @@
     $('.message .close')
     .on('click', function() {
         $(this).closest('.message').transition('fade');
-    });
-    </script>
+    });   
+</script>
 {% endblock scripts %}

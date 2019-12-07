@@ -20,7 +20,7 @@
                data-position="bottom center"
                href="#">
                 <i class="save icon"></i>
-                INGRESAR NUEVO MONITOREO
+                CARGAR MONITOREO
             </a>
         {% endif %}
         <div class="ui divider clearing"></div>
@@ -47,13 +47,12 @@
                         {% if caso.vigente  %}
                         <tr>
                             <td >
-                                <a class="ui tiny primary labeled icon button"
-                                data-tooltip="{{ caso.paciente.nombres }}"
+                                <a class="ui small blue labeled icon button"
+                                data-tooltip="Gestionar Caso"
                                 data-inverted=""
                                 data-position="bottom center"
                                 href="{% url 'casos:caso' caso.id%}">
-                                    <i class="user icon"></i>
-                                    GESTIONAR CASO
+                                    <i class="eye icon"></i>Gestionar
                                 </a>
                             </td>
                             <td>{{ caso.paciente.run }}-{{ caso.paciente.dv}}</td>
