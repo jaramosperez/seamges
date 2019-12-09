@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from .models import Citacion
@@ -10,7 +11,7 @@ from casos.models import Caso
 from prestaciones.models import Prestacion
 
 # Create your views here.
-@method_decorator(staff_member_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class CitacionCreateView(CreateView):
     model = Citacion
     form_class = CitacionForm
