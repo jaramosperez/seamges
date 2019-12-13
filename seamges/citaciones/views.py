@@ -10,6 +10,7 @@ from .forms import CitacionForm
 from casos.models import Caso
 from prestaciones.models import Prestacion
 
+
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
 class CitacionCreateView(CreateView):

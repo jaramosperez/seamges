@@ -17,7 +17,8 @@
           <a class="{% if request.path == '/' %}active{% endif %} item" href="{% url 'home' %}">SEAMGES Sol de Oriente</a>
           {% if request.user.is_authenticated %}
           <a class="ui {% if request.path|slice:":14" == '/casos/' %}active{% endif %} item" href="{% url 'casos:casos' %}">CASOS</a>
-          <a class="ui {% if request.path|slice:":14" == '/casos/' %}active{% endif %} item" href="{% url 'reportes:reportes' %}">REPORTES</a>
+          <a class="ui {% if request.path|slice:":14" == '/monitoreos/' %}active{% endif %} item" href="{% url 'monitoreos:monitoreos' %}">MONITOREOS</a>
+          <a class="ui {% if request.path|slice:":14" == '/reportes/' %}active{% endif %} item" href="{% url 'reportes:reportes' %}">REPORTES</a>
           {% endif %}
           <div class="ui secondary right menu">
               {% if not request.user.is_authenticated %}

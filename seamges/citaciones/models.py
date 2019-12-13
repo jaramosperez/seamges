@@ -12,6 +12,13 @@ class Citacion(models.Model):
     observacion = models.TextField(verbose_name="Observación Citación")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
+    ESTADOS_CITACIONES = [
+        ('Citado', 'Citado'),
+        ('No se presenta', 'No se presenta'),
+        ('Realizada', 'Realizada'),
+        ('Anulada', 'Anulada'),
+    ]
+    estado = models.CharField(max_length=20, choices=ESTADOS_CITACIONES, default='Citado')
 
     class Meta:
         verbose_name = "Citación"

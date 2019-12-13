@@ -5,11 +5,18 @@ from profesionales.models import Profesional
 
 
 class CitacionForm(forms.ModelForm):
+    ESTADOS_CITACIONES = [
+        ('Citado', 'Citado'),
+        ('No se presenta', 'No se presenta'),
+        ('Realizada', 'Realizada'),
+        ('Anulada', 'Anulada'),
+    ]
+    estado = forms.ChoiceField(choices=ESTADOS_CITACIONES)
     prestacion = forms.ModelChoiceField(queryset=Prestacion.objects.all())
     profesional = forms.ModelChoiceField(queryset=Profesional.objects.all())
     class Meta:
         model = Citacion
-        fields = ['prestacion', 'profesional','fecha_agenda']
+        fields = ['estado', 'prestacion', 'profesional','fecha_agenda']
         widgets = {
             'fecha_agenda': forms.DateInput(format=('%d/%m/%Y'), attrs={'class': 'ui calendar', 'type': 'date', 'id': '#example1'})
         }

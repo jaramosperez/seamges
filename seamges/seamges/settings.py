@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core',
     'django_extensions',
     'establecimientos',
+    'monitoreos',
     'pacientes',
     'patologias',
     'prestaciones',

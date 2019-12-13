@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}CASOS GES{% endblock %}
+{% block title %}LISTADO DE MONITOREOS{% endblock %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'core/css/dataTables.semanticui.min.css' %}">
 <link rel="stylesheet" href="{% static 'core/css/all.min.css' %}">
@@ -18,8 +18,8 @@
     {% endif %}
     <h2 class="ui header floated left">
         <i class="icon briefcase"></i>
-        <div class="ui content">Casos GES
-            <div class="sub header">Listado de Casos en Gestión</div>
+        <div class="ui content">LISTADO DE MONITOREOS
+            <div class="sub header">Listado de monitoreos cargados al sistema</div>
         </div>
     </h2>
     {% if request.user.is_staff %}
@@ -40,37 +40,17 @@
             </div>
         </h3>
         <div>
-            <table id="pacientes" class="ui celled table bordered striped">
+            <table id="monitoreos" class="ui celled table bordered striped">
                 <thead>
                 <tr>
-                    <th>ACCIONES</th>
-                    <th>RUN</th>
-                    <th>NOMBRE</th>
-                    <th>FECHA INICIO</th>
-                    <th>FECHA LIMITE</th>
-                    <th>PATOLOGÍA</th>
+                    <th>Fecha de Carga</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for caso in caso_list %}
-                {% if caso.vigente %}
+                {% for monitoreo in monitoreo_list %}
                 <tr>
-                    <td>
-                        <a class="ui small blue labeled icon button"
-                           data-tooltip="Gestionar Caso"
-                           data-inverted=""
-                           data-position="bottom center"
-                           href="{% url 'casos:caso' caso.id%}">
-                            <i class="eye icon"></i>Gestionar
-                        </a>
-                    </td>
-                    <td>{{ caso.paciente.run }}-{{ caso.paciente.dv}}</td>
-                    <td>{{ caso.paciente.nombres }} {{ caso.paciente.apellidos }}</td>
-                    <td>{{ caso.fecha_inicio|date:"SHORT_DATE_FORMAT" }}</td>
-                    <td>{{ caso.fecha_limite|date:"SHORT_DATE_FORMAT" }}</td>
-                    <td>{{ caso.patologia.nombre|truncatechars:40 }}</td>
+                    <td>{{ monitoreo.created }}</td>
                 </tr>
-                {% endif %}
                 {% endfor %}
             </table>
         </div>
@@ -82,7 +62,7 @@
 <script src="{% static 'core/js/dataTables.semanticui.min.js' %}"></script>
 <script>
     $(document).ready(function () {
-        $('#pacientes').DataTable({
+        $('#monitoreos').DataTable({
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             },

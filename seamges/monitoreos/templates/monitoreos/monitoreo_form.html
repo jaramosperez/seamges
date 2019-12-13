@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}INGRESAR MONITOREO{% endblock %}
+{% block content %}
+<h2 class="ui header floated left">
+    <i class="icon excel"></i>
+    <div class="content">Ingresar monitoreo
+    </div>
+</h2>
+<div class="ui divider clearing"></div>
+<div class="ui compact piled segment">
+    <form class="ui small form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class="">
+            {{ form.as_table }}
+        </table>
+        <button class="ui fluid button teal" type="submit">
+            <i class="icon save"></i>
+            INGRESAR
+        </button>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock scripts %}

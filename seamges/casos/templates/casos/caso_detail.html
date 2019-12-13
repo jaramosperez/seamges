@@ -3,116 +3,125 @@
 {% block title %}INFORMACIÓN DEL CASO{% endblock %}
 {% block content %}
 <div>
-{% if 'ok' in request.GET %}
-        <div class="ui warning message transition">
+    {% if 'ok' in request.GET %}
+    <div class="ui warning message transition">
         <i class="close icon"></i>
         <div class="header">
             Tiene campos sin completar
         </div>
         <p>Por favor, ingrese los datos requeridos en los campos correspondientes.</p>
-        </div>
-        {% endif %}
-        <h2 class="ui header floated left">
-        
-            <i class="icon user"></i>
-            <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
-                <div class="sub header">INFORMACIÓN DEL CASO</div>
-            </div>
-        </h2>
-        <a class="ui right floated small teal labeled icon button"
-               data-tooltip="Ingresar un nuevo caso"
-               data-inverted=""
-               data-position="bottom center"
-               href="{% url 'casos:casos' %}">
-                <i class="backward icon"></i>
-                VOLVER AL LISTADO DE CASOS
-            </a> 
-        <div class="ui divider clearing"></div>
-        <div class="ui horizontal raised segments">
-            <div class="ui red segment">
-                <div class="ui list divided very relaxed">
-                    <div class="item">
-                        <i class="user icon"></i>
-                        <div class="content">FECHA INICIO: <strong>{{caso.fecha_inicio}}</strong></div>
-                    </div>
-                    <div class="item">
-                        <i class="id card icon"></i>
-                        <div class="content">FECHA TERMINO: {{caso.fecha_inicio}}</div>
-                    </div>
-                    <div class="item">
-                        <i class="briefcase icon"></i>
-                        <div class="content">FALTAN: 31 DÍAS</div>
-                    </div>
-                    <div class="item">
-                        <div class="ui toggle checkbox">
-                        <input name="public" type="checkbox" tabindex="0" ><label>Vigente</label>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="ui toggle checkbox">
-                        <input name="public" type="checkbox" tabindex="0" ><label>Exceptuado</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ui green segment">
-                <div class="ui animated list divided very relaxed">
-                    <div class="item">
-                        <i class="user icon"></i>
-                        <div class="content">Debe Tener la Segunda Pesquisa antes del 26/12/2019</div>
-                    </div>
-                    <div class="item">
-                        <i class="id card icon"></i>
-                        <div class="content">Debe tener a la confirmación o Descarte por médico a mas tardar el 26/12/2019</div>
-                    </div>
-                    <div class="item">
-                        <i class="briefcase icon"></i>
-                        <div class="content">Este caso se puede exceptuar con dos NSP hasta la fecha límite</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui divider clearing"></div>
-        <h2 class="ui header floated left">
-            <i class="calendar check outline icon"></i>
-            <div class="content">CITACIONES
-                <div class="sub header">Listado de CITACIONES</div>
-            </div>
-        </h2>
-            <a class="ui right floated small grey labeled icon button"
-               data-tooltip="Ingresar un citacion"
-               data-inverted=""
-               data-position="bottom center"
-               href="{% url 'citaciones:create' caso.id %}">
-                <i class="user icon"></i>
-                INGRESAR CITACIÓN
-            </a>
-            
-        <table class="ui celled table bordered striped">
-            <thead>
-            <tr>
-                <th>FECHA</th>
-                <th>PROFESIONAL</th>
-                <th>TIPO PRESTACIÓN</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for citacion in citaciones_listado %}
-                        <tr>
-                            <td>{{ citacion.fecha_agenda }}</td>
-                            <td>{{ citacion.profesional.nombres }} {{ citacion.profesional.primer_apellido }} {{ citacion.profesional.segundo_a }}</td>
-                            <td>{{ citacion.prestacion.nombre }}</td>
-                        </tr>
-                    {% endfor %}
-            </tbody>
-        </table>
     </div>
+    {% endif %}
+    <h2 class="ui header floated left">
+
+        <i class="icon user"></i>
+        <div class="content"><strong>{{ caso.paciente.nombres}} {{caso.paciente.apellidos}}</strong>
+            <div class="sub header">INFORMACIÓN DEL CASO</div>
+        </div>
+    </h2>
+    <a class="ui right floated small teal labeled icon button"
+       data-tooltip="Ingresar un nuevo caso"
+       data-inverted=""
+       data-position="bottom center"
+       href="{% url 'casos:casos' %}">
+        <i class="backward icon"></i>
+        VOLVER AL LISTADO DE CASOS
+    </a>
+    <div class="ui divider clearing"></div>
+    <div class="ui horizontal raised segments">
+        <div class="ui red segment">
+            <div class="ui list divided very relaxed">
+                <div class="item">
+                    <i class="user icon"></i>
+                    <div class="content">FECHA INICIO: <strong>{{caso.fecha_inicio}}</strong></div>
+                </div>
+                <div class="item">
+                    <i class="id card icon"></i>
+                    <div class="content">FECHA TERMINO: {{caso.fecha_inicio}}</div>
+                </div>
+                <div class="item">
+                    <i class="briefcase icon"></i>
+                    <div class="content">FALTAN: 31 DÍAS</div>
+                </div>
+                <div class="item">
+                    <div class="ui toggle checkbox">
+                        <input name="vigente" value="{{caso.vigente}}" class="checar" type="checkbox" {% if caso.vigente %}checked="checked" {% endif %}/><label>Vigente</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ui toggle checkbox">
+                        <input name="exceptuado" value="{{caso.exceptuado}}" type="checkbox" {% if caso.exceptuado %}checked="checked" {% endif %}/><label>Exceptuado</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui green segment">
+            <div class="ui animated list divided very relaxed">
+                <div class="item">
+                    <i class="user icon"></i>
+                    <div class="content">Debe Tener la Segunda Pesquisa antes del 26/12/2019</div>
+                </div>
+                <div class="item">
+                    <i class="id card icon"></i>
+                    <div class="content">Debe tener a la confirmación o Descarte por médico a mas tardar el 26/12/2019
+                    </div>
+                </div>
+                <div class="item">
+                    <i class="briefcase icon"></i>
+                    <div class="content">Este caso se puede exceptuar con dos NSP hasta la fecha límite</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider clearing"></div>
+    <h2 class="ui header floated left">
+        <i class="calendar check outline icon"></i>
+        <div class="content">CITACIONES
+            <div class="sub header">Listado de CITACIONES</div>
+        </div>
+    </h2>
+    <a class="ui right floated small grey labeled icon button"
+       data-tooltip="Ingresar un citacion"
+       data-inverted=""
+       data-position="bottom center"
+       href="{% url 'citaciones:create' caso.id %}">
+        <i class="user icon"></i>
+        INGRESAR CITACIÓN
+    </a>
+
+    <table class="ui celled table bordered striped">
+        <thead>
+        <tr>
+            <th>FECHA</th>
+            <th>PROFESIONAL</th>
+            <th>TIPO PRESTACIÓN</th>
+            <th>ESTADO</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for citacion in citaciones_listado %}
+        <tr>
+            <td>{{ citacion.fecha_agenda }}</td>
+            <td>{{ citacion.profesional.nombres }} {{ citacion.profesional.primer_apellido }} {{ citacion.profesional.segundo_apellido }}
+            </td>
+            <td>{{ citacion.prestacion.nombre }}</td>
+            <td>{{ citacion.estado }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
 {% block scripts %}
 <script>
     $('.message .close')
-    .on('click', function() {
-        $(this).closest('.message').transition('fade');
-    });   
+        .on('click', function () {
+            $(this).closest('.message').transition('fade');
+        });
+</script>
+<script>
+    $('.ui.checkbox')
+        .checkbox()
+    ;
 </script>
 {% endblock scripts %}
