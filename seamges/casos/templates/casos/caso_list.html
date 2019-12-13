@@ -49,19 +49,19 @@
                     <th>FECHA INICIO</th>
                     <th>FECHA LIMITE</th>
                     <th>PATOLOGÍA</th>
+                    <th>FALTAN</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for caso in caso_list %}
-                {% if caso.vigente %}
                 <tr>
                     <td>
-                        <a class="ui small blue labeled icon button"
+                        <a class="ui small blue icon button"
                            data-tooltip="Gestionar Caso"
                            data-inverted=""
                            data-position="bottom center"
                            href="{% url 'casos:caso' caso.id%}">
-                            <i class="eye icon"></i>Gestionar
+                            <i class="eye icon"></i>
                         </a>
                     </td>
                     <td>{{ caso.paciente.run }}-{{ caso.paciente.dv}}</td>
@@ -69,8 +69,8 @@
                     <td>{{ caso.fecha_inicio|date:"SHORT_DATE_FORMAT" }}</td>
                     <td>{{ caso.fecha_limite|date:"SHORT_DATE_FORMAT" }}</td>
                     <td>{{ caso.patologia.nombre|truncatechars:40 }}</td>
+                    <td>{{ caso.vencimiento}}</td>
                 </tr>
-                {% endif %}
                 {% endfor %}
             </table>
         </div>

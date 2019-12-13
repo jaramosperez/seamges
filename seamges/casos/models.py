@@ -2,6 +2,7 @@ from django.db import models
 from pacientes.models import Paciente
 from patologias.models import Patologia
 from establecimientos.models import Establecimiento
+import datetime
 
 # Create your models here.
 class Caso(models.Model):
@@ -20,3 +21,9 @@ class Caso(models.Model):
         verbose_name = "Caso"
         verbose_name_plural = "Casos"
         ordering = ['fecha_limite']
+
+    @property
+    def vencimiento(self):
+        hoy = datetime.date.today()
+        vencimiento = self.fecha_limite - hoy
+        return vencimiento.days

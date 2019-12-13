@@ -6,8 +6,6 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 autopep8 = "*"
-pydotplus = "*"
-graphviz = "*"
 
 [packages]
 django = "==2.2.7"
