@@ -14,9 +14,11 @@ class CitacionForm(forms.ModelForm):
     estado = forms.ChoiceField(choices=ESTADOS_CITACIONES)
     prestacion = forms.ModelChoiceField(queryset=Prestacion.objects.all())
     profesional = forms.ModelChoiceField(queryset=Profesional.objects.all())
+    fecha_agenda = forms.DateField()
+
     class Meta:
         model = Citacion
-        fields = ['estado', 'prestacion', 'profesional','fecha_agenda']
+        fields = ['estado', 'prestacion', 'profesional', 'fecha_agenda']
         widgets = {
             'fecha_agenda': forms.DateInput(format=('%d/%m/%Y'), attrs={'class': 'ui calendar', 'type': 'date', 'id': '#example1'})
         }

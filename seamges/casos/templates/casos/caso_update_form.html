@@ -7,9 +7,9 @@
     <div class="ui warning message transition">
         <i class="close icon"></i>
         <div class="header">
-            Tiene campos sin completar
+            Caso Actualizado
         </div>
-        <p>Por favor, ingrese los datos requeridos en los campos correspondientes.</p>
+        <p>El Caso ha sido actualizado con éxito</p>
     </div>
     {% endif %}
     <h2 class="ui header floated left">
@@ -29,7 +29,7 @@
     </a>
     <div class="ui divider clearing"></div>
     <div class="ui horizontal raised segments">
-        <form class="ui small form" action="" method="post">
+        <form class="ui small form" method="post">
             {% csrf_token %}
         <div class="ui red segment">
             <div class="ui list divided very relaxed">

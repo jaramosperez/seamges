@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'prestaciones',
     'profesiones',
     'profesionales',
+    'reglas',
     'reportes',
 ]
 

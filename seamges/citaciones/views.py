@@ -34,3 +34,12 @@ class CitacionCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('casos:caso', args=[self.object.caso.id]) + '?ok'
+
+
+class CitacionUpdateView(UpdateView):
+    model = Citacion
+    form_class = CitacionForm
+    success_url = reverse_lazy('casos:casos')
+
+    def get_success_url(self):
+        return reverse_lazy('casos:caso', args=[self.object.caso.id]) + '?ok'

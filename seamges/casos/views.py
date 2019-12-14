@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from .models import Caso
 from citaciones.models import Citacion
-from .forms import CasoForm
+from .forms import CasoForm, CasoUpdateForm
 import datetime
 
 
@@ -41,8 +41,18 @@ class CasoCreateView(CreateView):
 @method_decorator(login_required, name='dispatch')
 class CasoUpdateView(UpdateView):
     model = Caso
-    form_class = CasoForm
+    form_class = CasoUpdateForm
     template_name_suffix = '_update_form'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        citaciones_listado = Citacion.objects.filter(caso_id=self.object.id)
+        hoy = datetime.date.today()
+        vencimiento = self.object.fecha_limite - hoy
+        context['vencimiento'] = vencimiento.days
+        context['citaciones_listado'] = citaciones_listado
+        context['form'] = self.form_class
+        return context
 
     def get_success_url(self):
         return reverse_lazy('casos:update', args=[self.object.id]) + '?ok'

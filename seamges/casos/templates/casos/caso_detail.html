@@ -44,12 +44,12 @@
                     <div class="content">FALTAN: {{ vencimiento }} días</div>
                 </div>
                 <div class="item">
-                    <div class="ui toggle checkbox">
-                        <input name="vigente" value="{{caso.vigente}}" class="checar" type="checkbox" {% if caso.vigente %}checked="checked" {% endif %}/><label>Vigente</label>
+                    <div class="ui toggle disabled checkbox">
+                        <input name="vigente" value="{{caso.vigente}}" type="checkbox" {% if caso.vigente %}checked="checked" {% endif %}/><label>Vigente</label>
                     </div>
                 </div>
                 <div class="item">
-                    <div class="ui toggle checkbox">
+                    <div class="ui toggle disabled checkbox">
                         <input name="exceptuado" value="{{caso.exceptuado}}" type="checkbox" {% if caso.exceptuado %}checked="checked" {% endif %}/><label>Exceptuado</label>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             <div class="sub header">Listado de CITACIONES</div>
         </div>
     </h2>
-    <a class="ui right floated small grey labeled icon button"
+    <a class="ui right floated small yellow labeled icon button"
        data-tooltip="Ingresar un citacion"
        data-inverted=""
        data-position="bottom center"
@@ -92,6 +92,7 @@
     <table class="ui celled table bordered striped">
         <thead>
         <tr>
+            <th>ACCIÓN</th>
             <th>FECHA</th>
             <th>PROFESIONAL</th>
             <th>TIPO PRESTACIÓN</th>
@@ -101,6 +102,15 @@
         <tbody>
         {% for citacion in citaciones_listado %}
         <tr>
+            <td>
+                <a class="ui small yellow icon button"
+                   data-tooltip="Actualizar Citación"
+                   data-inverted=""
+                   data-position="bottom center"
+                   href="{% url 'citaciones:update' citacion.id%}">
+                    <i class="eye icon"></i>
+                </a>
+            </td>
             <td>{{ citacion.fecha_agenda }}</td>
             <td>{{ citacion.profesional.nombres }} {{ citacion.profesional.primer_apellido }} {{ citacion.profesional.segundo_apellido }}
             </td>
