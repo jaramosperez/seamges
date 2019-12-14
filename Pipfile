@@ -13,6 +13,7 @@ django-extensions = "*"
 openpyxl = "*"
 pylint-django = "*"
 psycopg2 = "*"
+experta = "*"
 
 [requires]
 python_version = "3.8"

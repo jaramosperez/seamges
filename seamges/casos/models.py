@@ -11,7 +11,7 @@ class Caso(models.Model):
     establecimiento = models.ForeignKey(Establecimiento, on_delete=models.CASCADE,  verbose_name="Establecimiento Responsable")
     fecha_inicio = models.DateField(verbose_name="Fecha Inicio")
     fecha_limite = models.DateField(verbose_name="Fecha Límite")
-    observacion = models.TextField(verbose_name='Observación')
+    observacion = models.TextField(verbose_name='Observación', blank=True, null=True)
     vigente = models.BooleanField(verbose_name='Caso Vigente', default=True)
     exceptuado = models.BooleanField(verbose_name='Caso Exceptuado', default=False)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")

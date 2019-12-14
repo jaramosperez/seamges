@@ -21,11 +21,29 @@ class CasoListView(ListView):
 class CasoDetailView(DetailView):
     model = Caso
 
+
     def get_context_data(self, **kwargs):
         context = super(CasoDetailView, self).get_context_data(**kwargs)
         citaciones_listado = Citacion.objects.filter(caso_id=self.object.id)
+        citaciones_nsp = Citacion.objects.filter(caso_id=self.object.id).filter(estado__contains='No se presenta').count()
         hoy = datetime.date.today()
+        mensaje_nsp = ''
+        cant_nsp = 0
+
+        for citacion in citaciones_listado:
+            if citacion.ESTADOS_CITACIONES == 'No se presenta':
+                cant_nsp = cant_nsp + 1
+                return cant_nsp
+
+        if citaciones_nsp >= 2:
+            mensaje_nsp = 'El paciente tiene dos NSP, esta caso debería ser Exceptuado'
+        elif citaciones_nsp == 1:
+            mensaje_nsp = 'El paciente tiene un NSP, le falta un NSP para ser Exceptuado'
+        elif citaciones_nsp == 0:
+            mensaje_nsp = 'Este caso puede ser exceptuado con dos NSP'
+
         vencimiento = self.object.fecha_limite - hoy
+        context['mensaje_nsp'] = mensaje_nsp
         context['vencimiento'] = vencimiento.days
         context['citaciones_listado'] = citaciones_listado
         return context
@@ -44,6 +62,7 @@ class CasoUpdateView(UpdateView):
     form_class = CasoUpdateForm
     template_name_suffix = '_update_form'
 
+    #MUESTRA EL LISTADO DE CITACIONES CORRESPONDIENTE AL CASO
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         citaciones_listado = Citacion.objects.filter(caso_id=self.object.id)
