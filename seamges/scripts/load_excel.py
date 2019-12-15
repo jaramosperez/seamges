@@ -16,9 +16,9 @@ def run():
         reader = csv.reader(fdata)
         next(reader)  # AVANZA PARA NO CONTAR LOS TITULOS DE LAS COLUMNAS
 
-        Paciente.objects.all().delete()
-        Patologia.objects.all().delete()
-        Caso.objects.all().delete()
+        #Paciente.objects.all().delete()
+        #Patologia.objects.all().delete()
+        #Caso.objects.all().delete()
 
         # RECORRE EL DOCUMENTO FILA POR FILA [YA VIENE EXCLUIDO LAS CABECERAS DE ]
         for row in reader:
@@ -31,4 +31,4 @@ def run():
                 nombre=row[9])
 
             caso, created = Caso.objects.get_or_create(
-                patologia=patologia, paciente=paciente, fecha_inicio=row[5], fecha_limite=row[6], establecimiento=establecimiento)
+                patologia=patologia, paciente=paciente, fecha_inicio=row[5], fecha_limite=row[6], establecimiento=establecimiento, observacion='')

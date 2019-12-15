@@ -4,12 +4,21 @@
 {% block content %}
 <div>
     {% if 'ok' in request.GET %}
-    <div class="ui warning message transition">
+    <div class="ui success message transition">
         <i class="close icon"></i>
         <div class="header">
-            Tiene campos sin completar
+            Citada Ingresada
         </div>
-        <p>Por favor, ingrese los datos requeridos en los campos correspondientes.</p>
+        <p>La citación fue ingresada correctamente, se puede visualizar en la tabla de citaciones.</p>
+    </div>
+    {% endif %}
+    {% if 'casook' in request.GET %}
+    <div class="ui blue message transition">
+        <i class="close icon"></i>
+        <div class="header">
+            Caso Actualizado
+        </div>
+        <p>El Caso fue actualizado Correctamente</p>
     </div>
     {% endif %}
     <h2 class="ui header floated left">
@@ -53,6 +62,16 @@
                         <input name="exceptuado" value="{{caso.exceptuado}}" type="checkbox" {% if caso.exceptuado %}checked="checked" {% endif %}/><label>Exceptuado</label>
                     </div>
                 </div>
+                <div>
+                    <a class="ui left floated small blue labeled icon button"
+       data-tooltip="Actualizar Caso"
+       data-inverted=""
+       data-position="bottom center"
+       href="{% url 'casos:update' caso.id %}">
+        <i class="backward icon"></i>
+        Actualizar Caso
+    </a>
+                </div>
             </div>
         </div>
         <div class="ui green segment">
@@ -73,6 +92,7 @@
             </div>
         </div>
     </div>
+
     <div class="ui divider clearing"></div>
     <h2 class="ui header floated left">
         <i class="calendar check outline icon"></i>

@@ -9,7 +9,10 @@ from .models import Caso
 from citaciones.models import Citacion
 from .forms import CasoForm, CasoUpdateForm
 import datetime
-
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, post_save
+import csv
+import codecs
 
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
@@ -62,19 +65,8 @@ class CasoUpdateView(UpdateView):
     form_class = CasoUpdateForm
     template_name_suffix = '_update_form'
 
-    #MUESTRA EL LISTADO DE CITACIONES CORRESPONDIENTE AL CASO
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        citaciones_listado = Citacion.objects.filter(caso_id=self.object.id)
-        hoy = datetime.date.today()
-        vencimiento = self.object.fecha_limite - hoy
-        context['vencimiento'] = vencimiento.days
-        context['citaciones_listado'] = citaciones_listado
-        context['form'] = self.form_class
-        return context
-
     def get_success_url(self):
-        return reverse_lazy('casos:update', args=[self.object.id]) + '?ok'
+        return reverse_lazy('casos:caso', args=[self.object.id]) + '?casook'
 
 
 @method_decorator(login_required, name='dispatch')

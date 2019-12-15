@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Monitoreo(models.Model):
     archivo = models.FileField(upload_to='media/%Y/%m/%d/', null=True, blank=True)
@@ -10,3 +11,4 @@ class Monitoreo(models.Model):
         verbose_name = "Monitoreo"
         verbose_name_plural = "Monitoreos"
         ordering = ['created']
+

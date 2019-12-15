@@ -72,15 +72,15 @@
                     <td>{{ caso.patologia.nombre|truncatechars:40 }}</td>
 
                     {% if caso.vencimiento >= 30 %}
-                    <td><div class="ui olive label">{{ caso.vencimiento}}</div></td>
+                    <td><div class="ui teal label">{{ caso.vencimiento}}</div></td>
                     {% elif caso.vencimiento < 30 and caso.vencimiento > 15 %}
-                    <td><div class="ui yellow label">{{ caso.vencimiento}}</div></td>
+                    <td><div class="ui olive label">{{ caso.vencimiento}}</div></td>
                     {% elif caso.vencimiento <= 15 and caso.vencimiento > 8 %}
-                    <td><div class="ui orange label">{{ caso.vencimiento}}</div></td>
+                    <td><div class="ui yellow label">{{ caso.vencimiento}}</div></td>
                     {% elif caso.vencimiento >= 1 and caso.vencimiento <= 8 %}
-                    <td><div class="ui red label">{{ caso.vencimiento}}</div></td>
+                    <td><div class="ui orange label">{{ caso.vencimiento}}</div></td>
                     {% else %}
-                    <td><div class="ui purple label">{{ caso.vencimiento}}</div></td>
+                    <td><div class="ui red label">{{ caso.vencimiento}}</div></td>
                     {% endif %}
                     {% if caso.exceptuado %}
                     <td> <div class="ui blue horizontal label">exceptuado</div> </td>
